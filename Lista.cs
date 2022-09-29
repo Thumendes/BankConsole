@@ -40,6 +40,17 @@ namespace ListaTeste
             return this;
         }
 
+        public void Remove(T value)
+        {
+            Node<T>? aux = head;
+            Node<T>? prev = head;
+            while (aux != null && aux.value != null && prev != null)
+            {
+                if (aux.value.Equals(value)) prev.next = aux.next;
+                prev = aux;
+                aux = aux.next;
+            }
+        }
 
         public delegate void ForEachCallback(T value, int index);
         public void ForEach(ForEachCallback Callback)
@@ -126,18 +137,6 @@ namespace ListaTeste
                 currIndex++;
             }
             return default(T);
-        }
-
-        public void Remove(T value)
-        {
-            Node<T>? aux = head;
-            Node<T>? prev = head;
-            while (aux != null && aux.value != null && prev != null)
-            {
-                if (aux.value.Equals(value)) prev.next = aux.next;
-                prev = aux;
-                aux = aux.next;
-            }
         }
 
         public int Length()
